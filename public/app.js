@@ -1,5 +1,5 @@
 // API Base URL
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://climateguard-api.onrender.com/api';
 
 // State
 let currentUser = null;
