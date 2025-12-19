@@ -1,0 +1,18 @@
+ClimateGuard Nigeria - Hyperlocal Climate Intelligence Platform
+
+Tech Stack:
+- Frontend: React + Tailwind CSS (responsive, modern UI)
+- Backend: Node.js + Express
+- Database: SQLite (easy to upgrade to PostgreSQL later)
+- Maps: Leaflet.js (free, open-source)
+- Weather API: OpenWeatherMap (free tier)
+- Disease Tracking: Mock data with real structure
+- Authentication: JWT
+- SMS: Placeholder for Termii/Africa's Talking integration
+
+Project Structure:
+/
+├── frontend/          # React application
+├── backend/           # Express API server
+├── shared/            # Shared types/utilities
+└── README.md          # Setup instructions

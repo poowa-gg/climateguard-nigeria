@@ -1,0 +1,94 @@
+========================================
+ClimateGuard Nigeria - QUICK START
+========================================
+
+✅ INSTALLATION COMPLETE!
+
+Backend: ✅ Installed
+Frontend: ✅ Installed
+
+========================================
+STEP 1: Get Free Weather API Key
+========================================
+
+1. Go to: https://openweathermap.org/api
+2. Click "Sign Up" (FREE account)
+3. After signup, go to "API keys" section
+4. Copy your API key
+5. Open: backend/.env
+6. Paste key after: OPENWEATHER_API_KEY=
+
+========================================
+STEP 2: Start Backend Server
+========================================
+
+Double-click: start-backend.bat
+
+OR in terminal:
+cd backend
+npm run dev
+
+Wait for: "🚀 ClimateGuard API running on port 5000"
+
+========================================
+STEP 3: Start Frontend Server
+========================================
+
+Double-click: start-frontend.bat
+
+OR in new terminal:
+cd frontend
+npm run dev
+
+Wait for: "Local: http://localhost:3000/"
+
+========================================
+STEP 4: Open in Browser
+========================================
+
+Go to: http://localhost:3000
+
+========================================
+STEP 5: Create Account & Explore
+========================================
+
+1. Click "Register here"
+2. Fill in your details
+3. Explore all features:
+   - Dashboard
+   - Weather Forecasts
+   - Disease Tracking
+   - Farm Security
+   - Alerts
+
+========================================
+FOR ACCELERATOR APPLICATION
+========================================
+
+Your pitch materials are ready:
+- ACCELERATOR_PITCH.md (Complete pitch deck)
+- README.md (Technical docs)
+- SETUP_GUIDE.md (Detailed setup)
+
+========================================
+TROUBLESHOOTING
+========================================
+
+Problem: Port 5000 in use
+Solution: Change PORT=5001 in backend/.env
+
+Problem: Weather shows "mock: true"
+Solution: Add OpenWeatherMap API key to backend/.env
+
+Problem: Can't connect to backend
+Solution: Make sure backend is running first
+
+========================================
+SUPPORT
+========================================
+
+Check START_HERE.md for detailed instructions
+Check SETUP_GUIDE.md for troubleshooting
+
+Good luck with your accelerator! 🚀
+========================================

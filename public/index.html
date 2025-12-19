@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClimateGuard Nigeria - Hyperlocal Climate Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .leaflet-container { height: 400px; width: 100%; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav id="navbar" class="bg-green-600 text-white shadow-lg hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <svg class="h-8 w-8 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+                    </svg>
+                    <span class="text-xl font-bold">ClimateGuard Nigeria</span>
+                </div>
+                <div class="flex space-x-4">
+                    <button onclick="showPage('dashboard')" class="px-3 py-2 rounded hover:bg-green-700">Dashboard</button>
+                    <button onclick="showPage('weather')" class="px-3 py-2 rounded hover:bg-green-700">Weather</button>
+                    <button onclick="showPage('disease')" class="px-3 py-2 rounded hover:bg-green-700">Disease</button>
+                    <button onclick="showPage('security')" class="px-3 py-2 rounded hover:bg-green-700">Security</button>
+                    <button onclick="showPage('alerts')" class="px-3 py-2 rounded hover:bg-green-700">Alerts</button>
+                    <button onclick="logout()" class="px-3 py-2 rounded hover:bg-green-700">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Page -->
+    <div id="loginPage" class="min-h-screen bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center px-4">
+        <div class="max-w-md w-full bg-white rounded-lg shadow-xl p-8">
+            <div class="text-center mb-8">
+                <svg class="h-16 w-16 text-green-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+                </svg>
+                <h2 class="text-3xl font-bold text-gray-900">ClimateGuard Nigeria</h2>
+                <p class="text-gray-600 mt-2">Hyperlocal Climate Intelligence Platform</p>
+            </div>
+            <div id="loginError" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-4"></div>
+            <form onsubmit="login(event)" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input type="email" id="loginEmail" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" placeholder="farmer@example.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <input type="password" id="loginPassword" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" placeholder="••••••••">
+                </div>
+                <button type="submit" class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 font-medium">Sign In</button>
+            </form>
+            <div class="mt-6 text-center">
+                <p class="text-gray-600">Don't have an account? <a href="#" onclick="showRegister()" class="text-green-600 hover:text-green-700 font-medium">Register here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Page -->
+    <div id="registerPage" class="hidden min-h-screen bg-gradient-to-br from-green-500 to-green-700 items-center justify-center px-4 py-8">
+        <div class="max-w-md w-full bg-white rounded-lg shadow-xl p-8">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900">Create Account</h2>
+                <p class="text-gray-600 mt-1">Join ClimateGuard Nigeria</p>
+            </div>
+            <div id="registerError" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-4"></div>
+            <form onsubmit="register(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <input type="text" id="regName" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input type="email" id="regEmail" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                    <input type="tel" id="regPhone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" placeholder="+234">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                    <input type="text" id="regLocation" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500" placeholder="e.g., Lagos">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">User Type</label>
+                    <select id="regUserType" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+                        <option value="farmer">Farmer</option>
+                        <option value="agribusiness">Agribusiness</option>
+                        <option value="government">Government/NGO</option>
+                        <option value="logistics">Logistics</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input type="password" id="regPassword" required minlength="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+                </div>
+                <button type="submit" class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 font-medium">Create Account</button>
+            </form>
+            <div class="mt-4 text-center">
+                <p class="text-gray-600 text-sm">Already have an account? <a href="#" onclick="showLogin()" class="text-green-600 hover:text-green-700 font-medium">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboardPage" class="hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900">Welcome back, <span id="userName"></span>!</h1>
+                <p class="text-gray-600 mt-1">Here's your climate intelligence overview</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm">Temperature</p>
+                            <p class="text-2xl font-bold mt-1"><span id="dashTemp">--</span> <span class="text-sm text-gray-500">°C</span></p>
+                        </div>
+                        <div class="p-3 rounded-full bg-orange-500 text-white">🌡️</div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm">Humidity</p>
+                            <p class="text-2xl font-bold mt-1"><span id="dashHumidity">--</span> <span class="text-sm text-gray-500">%</span></p>
+                        </div>
+                        <div class="p-3 rounded-full bg-blue-500 text-white">💧</div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm">Wind Speed</p>
+                            <p class="text-2xl font-bold mt-1"><span id="dashWind">--</span> <span class="text-sm text-gray-500">m/s</span></p>
+                        </div>
+                        <div class="p-3 rounded-full bg-cyan-500 text-white">🌬️</div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm">Active Alerts</p>
+                            <p class="text-2xl font-bold mt-1"><span id="dashAlerts">0</span></p>
+                        </div>
+                        <div class="p-3 rounded-full bg-red-500 text-white">⚠️</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-4">Recent Alerts</h2>
+                <div id="dashboardAlerts"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Weather Page -->
+    <div id="weatherPage" class="hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-6">Weather Forecast</h1>
+            
+            <div class="bg-gradient-to-br from-green-500 to-green-700 text-white rounded-lg shadow-lg p-8 mb-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-green-100 text-lg">Current Weather</p>
+                        <p class="text-5xl font-bold mt-2"><span id="weatherTemp">--</span>°C</p>
+                        <p class="text-green-100 mt-2 capitalize" id="weatherDesc">Loading...</p>
+                    </div>
+                    <div class="text-6xl">☁️</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div class="bg-white rounded-lg shadow p-4">
+                    <p class="text-gray-600 text-sm">Humidity</p>
+                    <p class="text-2xl font-bold mt-1"><span id="weatherHumidity">--</span> <span class="text-sm text-gray-500">%</span></p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <p class="text-gray-600 text-sm">Wind Speed</p>
+                    <p class="text-2xl font-bold mt-1"><span id="weatherWind">--</span> <span class="text-sm text-gray-500">m/s</span></p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <p class="text-gray-600 text-sm">Pressure</p>
+                    <p class="text-2xl font-bold mt-1"><span id="weatherPressure">--</span> <span class="text-sm text-gray-500">hPa</span></p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <p class="text-gray-600 text-sm">Clouds</p>
+                    <p class="text-2xl font-bold mt-1"><span id="weatherClouds">--</span> <span class="text-sm text-gray-500">%</span></p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-4">Farming Recommendations</h2>
+                <div id="recommendations"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disease Page -->
+    <div id="diseasePage" class="hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-6">Disease Outbreak Tracking</h1>
+            
+            <div class="bg-white rounded-lg shadow mb-6 overflow-hidden">
+                <div id="diseaseMap" class="leaflet-container"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">Active Outbreaks</h2>
+                    <div id="outbreaksList"></div>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">Prevention Guides</h2>
+                    <div id="preventionGuides"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Security Page -->
+    <div id="securityPage" class="hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-6">Farm Security</h1>
+            
+            <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+                <h2 class="text-xl font-bold text-red-900 mb-4">Emergency Contacts</h2>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4" id="emergencyContacts"></div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-4">Security Tips</h2>
+                <div id="securityTips"></div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-4">Recent Reports</h2>
+                <div id="securityReports"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alerts Page -->
+    <div id="alertsPage" class="hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-6">Climate Alerts</h1>
+            
+            <div class="bg-white rounded-lg shadow mb-6 p-4">
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterAlerts('all')" class="px-4 py-2 rounded-lg font-medium bg-green-600 text-white">All</button>
+                    <button onclick="filterAlerts('weather')" class="px-4 py-2 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200">Weather</button>
+                    <button onclick="filterAlerts('disease')" class="px-4 py-2 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200">Disease</button>
+                    <button onclick="filterAlerts('security')" class="px-4 py-2 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200">Security</button>
+                </div>
+            </div>
+
+            <div id="alertsList"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

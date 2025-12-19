@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClimateGuard Nigeria - Quick Start</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #059669;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #6b7280;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .status {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .status h2 {
+            color: #065f46;
+            margin-bottom: 10px;
+        }
+        .step {
+            background: #f3f4f6;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+        .step h3 {
+            color: #1e40af;
+            margin-bottom: 10px;
+        }
+        .code {
+            background: #1f2937;
+            color: #10b981;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .button {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 10px 10px 0;
+            transition: background 0.3s;
+        }
+        .button:hover {
+            background: #059669;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .feature {
+            background: #eff6ff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .emoji {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .warning {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌦️ ClimateGuard Nigeria</h1>
+        <p class="subtitle">Hyperlocal Climate Intelligence Platform</p>
+        
+        <div class="status">
+            <h2>✅ Status: READY TO USE!</h2>
+            <p>Backend: Running on port 5000</p>
+            <p>Simple Frontend: Ready in public/ folder</p>
+        </div>
+
+        <div class="step">
+            <h3>📋 Step 1: Start Backend (if not running)</h3>
+            <p>Open Command Prompt and run:</p>
+            <div class="code">cd backend<br>npm run dev</div>
+            <p>Or double-click: <strong>start-backend.bat</strong></p>
+        </div>
+
+        <div class="step">
+            <h3>🚀 Step 2: Start Simple Frontend</h3>
+            <p><strong>Option A - Using Node.js (Recommended):</strong></p>
+            <div class="code">cd public<br>npx http-server -p 3000 -o</div>
+            <p>Or double-click: <strong>start-simple-frontend-node.bat</strong></p>
+            
+            <p style="margin-top: 15px;"><strong>Option B - Using Python:</strong></p>
+            <div class="code">cd public<br>python -m http.server 3000</div>
+            <p>Or double-click: <strong>start-simple-frontend.bat</strong></p>
+        </div>
+
+        <div class="step">
+            <h3>🌐 Step 3: Open in Browser</h3>
+            <a href="http://localhost:3000" class="button" target="_blank">Open ClimateGuard →</a>
+            <p style="margin-top: 10px;">Or visit: <strong>http://localhost:3000</strong></p>
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ Important:</strong> Make sure both backend (port 5000) and frontend (port 3000) are running!
+        </div>
+
+        <h2 style="margin-top: 30px; color: #059669;">✨ Features</h2>
+        <div class="features">
+            <div class="feature">
+                <div class="emoji">🌡️</div>
+                <strong>Weather Forecasts</strong>
+                <p>Real-time data & recommendations</p>
+            </div>
+            <div class="feature">
+                <div class="emoji">🦠</div>
+                <strong>Disease Tracking</strong>
+                <p>Interactive outbreak maps</p>
+            </div>
+            <div class="feature">
+                <div class="emoji">🛡️</div>
+                <strong>Farm Security</strong>
+                <p>Incident reporting & tips</p>
+            </div>
+            <div class="feature">
+                <div class="emoji">⚠️</div>
+                <strong>Smart Alerts</strong>
+                <p>Multi-hazard warnings</p>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 30px; color: #059669;">📚 Documentation</h2>
+        <p style="margin: 15px 0;">
+            <strong>ACCELERATOR_PITCH.md</strong> - Complete pitch deck with market analysis<br>
+            <strong>README.md</strong> - Technical documentation<br>
+            <strong>SIMPLE_FRONTEND_READY.md</strong> - Frontend guide<br>
+            <strong>FINAL_INSTRUCTIONS.txt</strong> - Quick reference
+        </p>
+
+        <h2 style="margin-top: 30px; color: #059669;">💰 Market Opportunity</h2>
+        <p style="margin: 15px 0;">
+            • <strong>$2B+</strong> agricultural insurance market<br>
+            • <strong>40M+</strong> Nigerian farmers<br>
+            • <strong>36</strong> state governments as potential clients<br>
+            • <strong>B2G, B2B, B2C</strong> revenue streams
+        </p>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #e5e7eb; text-align: center;">
+            <p style="color: #6b7280;">Built for Nigerian farmers and climate resilience</p>
+            <p style="color: #059669; font-weight: bold; margin-top: 10px;">Good luck with your accelerator! 🚀</p>
+        </div>
+    </div>
+</body>
+</html>

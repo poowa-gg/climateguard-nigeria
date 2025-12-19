@@ -1,0 +1,126 @@
+========================================
+CLIMATEGUARD NIGERIA - DEPLOYMENT GUIDE
+========================================
+
+QUICK START (5 MINUTES):
+========================
+
+1. PUSH TO GITHUB:
+   - Double-click: prepare-deployment.bat
+   - Create repo at: https://github.com/new
+   - Name: climateguard-nigeria (make it PUBLIC)
+   - Run these commands (replace YOUR_USERNAME):
+     
+     git remote add origin https://github.com/YOUR_USERNAME/climateguard-nigeria.git
+     git branch -M main
+     git push -u origin main
+
+2. DEPLOY BACKEND:
+   - Go to: https://render.com
+   - Sign up with GitHub
+   - New + → Web Service
+   - Connect your repo
+   - Root Directory: backend
+   - Build: npm install
+   - Start: npm start
+   - Add environment variables (see DEPLOYMENT_GUIDE.md)
+   - Deploy!
+
+3. UPDATE FRONTEND:
+   - Copy your backend URL from Render
+   - Double-click: update-api-url.bat
+   - Paste your backend URL
+   - Commit and push changes
+
+4. DEPLOY FRONTEND:
+   - In Render: New + → Static Site
+   - Connect same repo
+   - Root Directory: public
+   - Deploy!
+
+DONE! Your app is live! 🚀
+
+========================================
+
+DETAILED GUIDES:
+================
+- DEPLOY_NOW.md - Quick deployment steps
+- DEPLOYMENT_GUIDE.md - Complete guide with all options
+- DEPLOYMENT_CHECKLIST.md - Step-by-step checklist
+
+HELPER SCRIPTS:
+===============
+- prepare-deployment.bat - Initialize Git and prepare for GitHub
+- update-api-url.bat - Update API URL for production
+
+========================================
+
+WHAT YOU'LL GET:
+================
+✅ Backend API: https://climateguard-api.onrender.com
+✅ Frontend App: https://climateguard-app.onrender.com
+✅ GitHub Repo: https://github.com/YOUR_USERNAME/climateguard-nigeria
+
+SHARE THESE LINKS IN YOUR ACCELERATOR APPLICATION!
+
+========================================
+
+NEED HELP?
+==========
+1. Read DEPLOYMENT_GUIDE.md for detailed instructions
+2. Follow DEPLOYMENT_CHECKLIST.md step by step
+3. Check troubleshooting section in guides
+
+========================================
+
+BEST PLATFORMS FOR YOUR APP:
+=============================
+
+1. RENDER (Recommended - FREE):
+   ✅ Best for full-stack apps
+   ✅ Free tier available
+   ✅ Auto-deploy from GitHub
+   ✅ Easy database setup
+   ✅ HTTPS included
+   
+2. NETLIFY (Frontend only):
+   ✅ Super fast
+   ✅ Great for static sites
+   ✅ Drag and drop deployment
+   
+3. RAILWAY (Alternative):
+   ✅ Similar to Render
+   ✅ Good free tier
+   ✅ Easy to use
+
+========================================
+
+IMPORTANT NOTES:
+================
+- Free tier services sleep after 15 min inactivity
+- First request after sleep takes ~30 seconds
+- Perfect for demos and accelerator applications!
+- Backend must be deployed BEFORE frontend
+- Update API URL in frontend before deploying
+
+========================================
+
+FOR YOUR ACCELERATOR:
+=====================
+Highlight these points:
+✅ Full-stack application
+✅ RESTful API
+✅ User authentication
+✅ Real-time weather data
+✅ Interactive maps
+✅ Professional UI/UX
+✅ Deployed and accessible
+✅ Open source on GitHub
+
+========================================
+
+READY TO DEPLOY?
+================
+Start with: prepare-deployment.bat
+
+Good luck! 🚀
