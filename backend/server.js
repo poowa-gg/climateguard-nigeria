@@ -21,6 +21,23 @@ app.use(express.json());
 await initDatabase();
 
 // Routes
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'ClimateGuard Nigeria API',
+    version: '1.0.0',
+    status: 'running',
+    endpoints: {
+      health: '/api/health',
+      auth: '/api/auth',
+      weather: '/api/weather',
+      alerts: '/api/alerts',
+      disease: '/api/disease',
+      security: '/api/security'
+    },
+    documentation: 'https://github.com/poowa-gg/climateguard-nigeria'
+  });
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/weather', weatherRoutes);
 app.use('/api/alerts', alertRoutes);
