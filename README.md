@@ -4,6 +4,12 @@
 
 A professional, full-stack web application providing location-specific weather forecasts, disease tracking, farm security, and actionable insights for Nigerian farmers, insurers, disaster managers, and logistics operators.
 
+## 🌐 Live Deployment
+
+- **Backend API**: https://climateguard-api.onrender.com
+- **API Health**: https://climateguard-api.onrender.com/api/health
+- **GitHub Repository**: https://github.com/poowa-gg/climateguard-nigeria
+
 ---
 
 ## 🚀 Features
